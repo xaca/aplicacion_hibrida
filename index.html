@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Single App ejemplo</title>
+	<link rel="stylesheet" href="css/main.css">
+	<style type="text/css">
+		
+	</style>
+	<script>
+		let secciones = [];
+		let botones_menu = [];
+		let botones_volver;
+		let opciones;
+		let respuestas = [4,3];
+		let pregunta_actual = 0;
+
+		window.onload = inicio;
+
+		function inicio(){
+			iniciarVariables();
+			asignarEventosMenu();
+			asignarVolver();
+			asignarBotonesJuego();
+			setTimeout(function(){
+				irA(1);
+			},1000);
+		}
+
+		function asignarVolver(){
+			botones_volver = document.querySelectorAll(".volver");
+			for(var i of botones_volver)
+			{
+				i.addEventListener("click",function(evento){
+					evento.preventDefault();
+					irA(1);
+				});
+			}
+		}
+
+		function asignarBotonesJuego(){
+			opciones = document.querySelectorAll(".opcion");
+			for(var i of opciones)
+			{
+				i.addEventListener("click",function(evento){
+					
+					if(evento.target.id.split("_")[1] == respuestas[pregunta_actual])
+					{
+						alert("Respuesta correcta");
+						pregunta_actual++;
+						foto_juego.src='imgs/Drawing-icon.png';
+						respuesta_1.innerHTML = "Picaso";
+						respuesta_2.innerHTML = "Frida";
+						respuesta_3.innerHTML = "Debora";
+						respuesta_4.innerHTML = "Pedro Nel";
+						//Actualizar interfaz
+					}
+					else{
+						alert("Error, respuesta incorrecta");
+					}
+				});
+			}
+		}
+
+		function ocultar(){
+			for (var i = 0; i < secciones.length; i++) 
+			{
+				secciones[i].classList.add("ocultar"); 
+			}
+		}
+		function irA(id){
+			if(id<0 || id>=secciones.length)
+			{
+				return;
+			}
+			ocultar();
+			secciones[id].classList.remove("ocultar");
+			
+		}
+
+		function iniciarVariables(){
+			secciones.push(document.getElementById("splash"));
+			secciones.push(document.getElementById("home"));
+			secciones.push(document.getElementById("juego"));
+			secciones.push(document.getElementById("creditos"));
+			secciones.push(document.getElementById("instrucciones"));
+			botones_menu.push(document.getElementById("item_juego__2"));
+			botones_menu.push(document.getElementById("item_instrucciones__3"));
+			botones_menu.push(document.getElementById("item_creditos__4"));
+		}
+
+		function asignarEventosMenu(){
+			for(var i of botones_menu)
+			{
+				//console.log(secciones[i],i);
+				i.addEventListener("click",function(evento){
+					//console.log(event.target);
+					let seccion = evento.target.id.split("__")[1];
+					irA(seccion);
+				});
+			}
+		}
+
+		function validarPregunta(){
+			//Drawing-icon.png
+		}
+	</script>
+</head>
+<body>
+	<!-- Splash -->
+	<section id="splash">
+		<br>
+		<h1>Splash del juego</h1>
+		<img src="imgs/ivoted-2014-icon.png" alt="">
+	</section>
+	<!-- Home -->
+	<section id="home" class="ocultar">
+		<br>
+		<h1>Nombre del juego</h1>
+		<img src="imgs/ivoted-2014-icon.png" alt="">
+		<br>
+		<br>
+		<a href="javascript:void(0);" id="item_juego__2">Juego</a><br><br>
+		<a href="javascript:void(0);" id="item_instrucciones__3">Instrucciones</a><br><br>
+		<a href="javascript:void(0);" id="item_creditos__4">Créditos</a><br>
+	</section>
+	<!-- Juego -->
+	<section id="juego" class="ocultar">
+		<a href="javascript:void(0);" class="boton volver">&lt;</a>
+		<br>
+		<h1>Juego</h1>
+		<br>
+		<img id="foto_juego" src="imgs/Mona-Lisa-icon.png" alt="">
+		<br>
+		<br>
+		<button id="respuesta_1" class="opcion">Miguel Angel</button>&nbsp;&nbsp;
+		<button id="respuesta_2" class="opcion">Fernando Botero</button><br><br>
+		<button id="respuesta_3" class="opcion">Alberto Durero</button>&nbsp;&nbsp;
+		<button id="respuesta_4" class="opcion">Leonardo da Vinci</button><br><br>
+	</section>
+	<!-- Créditos / Autores -->
+	<section id="creditos" class="ocultar">
+		<a href="javascript:void(0);" class="boton volver">&lt;</a>
+		<br>
+		<br>
+		<h1>Créditos - Estudiantes</h1>
+		<br>
+		<img src="imgs/Avengers-Black-Widow-icon.png" alt="">&nbsp;&nbsp;
+		<span>Nombre Estudiante / Diseñad@r</span> <br>
+		<img src="imgs/Avengers-Iron-Man-icon.png" alt="">&nbsp;&nbsp;
+		<span>Nombre Estudiante / Ingeniero</span> <br>
+		<img src="imgs/Avengers-Thor-icon.png" alt="">&nbsp;&nbsp;
+		<span>Nombre Estudiante / Ingeniero</span>
+	</section>
+	<!-- Instrucciones -->
+	<section id="instrucciones" class="ocultar">
+		<a href="javascript:void(0);" class="boton volver">&lt;</a>
+		<h1>Instrucciones</h1>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, explicabo ducimus voluptates suscipit consequatur eligendi eos, hic aperiam sit! Recusandae explicabo provident sapiente beatae nam soluta ab minima omnis sed! <br>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias repellendus aliquam odit, iusto earum ipsum. Repudiandae deleniti corporis, praesentium accusantium aspernatur temporibus quisquam minus, soluta provident molestiae. Tempore, aliquid, fugit. <br>
+		</p>
+		<p>
+			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti, in magnam id eum vitae veniam magni non necessitatibus ducimus odit cupiditate sequi sapiente sit recusandae culpa vel fuga asperiores cum!
+		</p>
+		<a href="javascript:void(0);" class="boton">&lt;</a>&nbsp;&nbsp;<a href="javascript:void(0);" class="boton">&gt;</a>
+	</section>
+</body>
+</html>

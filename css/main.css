@@ -1,0 +1,46 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: black;
+}
+.ocultar{
+	display: none;
+}
+section{
+	position: relative;
+	width:360px;
+	height:740px;
+	text-align: center;
+	margin: 0 auto;
+}
+#splash{
+	background: LightSeaGreen;
+}
+#home{
+	background: OrangeRed;
+}
+#juego{
+	background: Violet;
+}
+#instrucciones{
+	background: YellowGreen;
+}
+#creditos{
+	background: DeepSkyBlue;
+}	
+#instrucciones p{
+	margin:25px;
+	text-align: left;
+}	
+.boton{
+	background-color: Navy;
+	color:white;
+	padding: 10px;
+	text-decoration: none;
+}
+.volver{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 20px;
+}
